@@ -12,12 +12,12 @@
 
 const mass = [16, -37, 54, -4, 72, -56, 47, 4, -16, 25, -37, 46, 4, -51, 27, -63, 4, -54, 76, -4, 12, -35, 4, 47];
 
-const positiv = [];
-const negativ = [];
+const positiv = mass.filter(function (num) {
+    return  num > 0
+});
 
-mass.forEach(function (num) {
-    if (num > 0) positiv.push(num);
-    if (num < 0) negativ.push(num);
+const negativ = mass.filter(function (num) {
+    return num < 0
 });
 
 function summ(arr) {
@@ -43,11 +43,12 @@ console.log(`максимальный элемент массива ${maxElement
 
 console.log(`колличество негативных элементов ${negativ.length}`);
 
-const positivNotpair = [];
-const positivPair = [];
+const positivNotpair = positiv.filter(function (num) {
+    return num % 2 !== 0
+});
 
-positiv.forEach(function (num) {
-    (num % 2 === 0) ? positivPair.push(num) : positivNotpair.push(num);
+const positivPair = positiv.filter(function (num) {
+    return num % 2 === 0
 });
 
 console.log(`колличество непарных позитивных элементов ${positivNotpair.length}`);
@@ -59,8 +60,12 @@ console.log(`сумма позитивных элементов ${summ(positivPa
 console.log(`сумма непарных позитивных элементов ${summ(positivNotpair)}`);
 
 let dobutok = 1;
-positiv.forEach(function (num) {
-    dobutok *= num;
+// positiv.forEach(function (num) {
+//     dobutok *= num;
+// });
+
+positiv.filter(function (num) {
+    return dobutok *= num;
 });
 
 console.log(`умножение позитивных элементов ${dobutok}`);
